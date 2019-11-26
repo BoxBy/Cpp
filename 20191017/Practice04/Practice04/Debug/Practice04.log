@@ -1,0 +1,4 @@
+﻿  Practice04.cpp
+c:\users\user\documents\visual studio 2015\projects\practice04\practice04\accounthandler.h(75): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+  Practice04.vcxproj -> c:\users\user\documents\visual studio 2015\Projects\Practice04\Debug\Practice04.exe
+  Practice04.vcxproj -> c:\users\user\documents\visual studio 2015\Projects\Practice04\Debug\Practice04.pdb (Partial PDB)
