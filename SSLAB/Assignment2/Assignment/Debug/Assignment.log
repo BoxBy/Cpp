@@ -1,0 +1,3 @@
+﻿  ku_pfred.c
+D:\OneDrive - konkuk.ac.kr\workspace\Visual Studio\SSLAB\Assignment2\Assignment\ku_pfred.c(13,18): warning C4244:  '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Assignment.vcxproj -> D:\OneDrive - konkuk.ac.kr\workspace\Visual Studio\SSLAB\Assignment2\Debug\Assignment.exe
