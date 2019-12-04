@@ -5,11 +5,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-typedef struct {
-    long mtype;
-    char mtext[9999];
-} msgType;
-
 int compare(const void* first,const void*second){
     if(*(int*)first > *(int*)second)
         return 1;

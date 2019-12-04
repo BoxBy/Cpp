@@ -1,4 +1,5 @@
 #include "ku_pfred.h"
+#define BUFFER_SIZE 9999
 // 주석은 전부 processNum이 5일때를 가정하고 적음
 
 int main(int argc, char* argv[3]){
@@ -7,9 +8,9 @@ int main(int argc, char* argv[3]){
     // argv[2] = input file
 
     FILE* file = fopen(argv[2], "r");
-    int buffer[9999] = { 0 };
+    int buffer[BUFFER_SIZE] = { 0 };
 
-    for(int i = 0; i < 9999; i++)
+    for(int i = 0; i < BUFFER_SIZE; i++)
         fscanf(file, "%d", &buffer[i]);
 
     fclose(file);
@@ -34,10 +35,10 @@ int main(int argc, char* argv[3]){
     }
     // forkNum이 0, 1, 2, 3, 4인 프로세스가 생긴다
 
-    int intervalBuffer[20][9999] = { 0 };
+    int intervalBuffer[20][BUFFER_SIZE] = { 0 };
     int count[20] = { 0 };
 
-    while(forkNum <= 9999){
+    while(forkNum <= BUFFER_SIZE){
         for(int process = 0; process < processNum; process++){ //프로세스 할당
             if(process == forkNum % processNum){ // forkNum의 값이 변하므로 processNum으로 나눈 나머지를 비교해야 한다 
                 for(int pointer = 1; pointer <= interval; pointer++){
@@ -47,13 +48,13 @@ int main(int argc, char* argv[3]){
                     }
                 }
             }
-        forkNum += 5;
+        forkNum += processNum;
         }
     }
 
     forkNum %= 5; // forkNum 복구
 
-    for(int i = 0; i < 9999; i++) // 이젠 필요없으니 다른값을 저장하기 위하여 Buffer를 비워준다
+    for(int i = 0; i < BUFFER_SIZE; i++) // 이젠 필요없으니 다른값을 저장하기 위하여 Buffer를 비워준다
         buffer[i] = 0;
 
     for(int i = 1; i <processNum; i++){ // forkNum이 0이라면 부모 프로세스이므로 제외한다
@@ -80,8 +81,8 @@ int main(int argc, char* argv[3]){
     countTemp = 0;
 
     for(int i = 0; i < interval; i++){ // 출력
-        printf("%d ~ %d = ", countTemp, countTemp + (int)(9999 / interval));
-        for(int j = 0; j < count[i]; j++){ // 개수도 알려줘야됨
+        printf("%d ~ %d = ", countTemp, countTemp + (int)(BUFFER_SIZE / interval));
+        for(int j = 0; j < count[i]; j++){
             printf("%d, ", intervalBuffer[i][j]);
         }
     }
