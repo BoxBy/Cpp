@@ -69,7 +69,7 @@ int main(int argc, char* argv[3]){
     pthread_t thread_id[data.threadsNum];
     for(int i = 0; i < data.threadsNum; i++){
         data.start = i;
-        status = pthread_create(&thread_id[i], NULL, thread_distribute, data);
+    //    status = pthread_create(&thread_id[i], NULL, thread_distribute, data);
     }   
     
     for(int i = 0; i < data.interval; i++)
