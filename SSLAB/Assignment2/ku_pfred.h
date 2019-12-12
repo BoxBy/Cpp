@@ -20,7 +20,3 @@ int* addArr(int arr[], int count, int arr2[], int count2){
         arr[i] = arr2[i - count];
     return arr;
 }
-
-void distribute(int start, int end){
-
-}

@@ -1,0 +1,3 @@
+Hello C++ world
+I hope you get a lot from this CLASS
+bbaq!

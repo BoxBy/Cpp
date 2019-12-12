@@ -1,13 +1,13 @@
 #include "ku_pfred.h"
-#define BUFFER_SIZE 9999
+#define BUFFER_SIZE 10000
 // 주석은 전부 processNum이 5일때를 가정하고 적음
 
 int main(int argc, char* argv[3]){
-    // argv[0] = number of processes
-    // argv[1] = interval
-    // argv[2] = input file
+    // argv[1] = number of processes
+    // argv[2] = interval
+    // argv[3] = input file
 
-    FILE* file = fopen(argv[2], "r");
+    FILE* file = fopen(argv[3], "r");
     int buffer[BUFFER_SIZE] = { 0 };
 
     for(int i = 0; i < BUFFER_SIZE; i++)
@@ -15,8 +15,8 @@ int main(int argc, char* argv[3]){
 
     fclose(file);
 
-    int processNum = atoi(argv[0]);
-    int interval = atoi(argv[1]);
+    int processNum = atoi(argv[1]);
+    int interval = atoi(argv[2]);
     int forkNum = 0;
     int countTemp = 0;
 
@@ -85,6 +85,7 @@ int main(int argc, char* argv[3]){
         for(int j = 0; j < count[i]; j++){
             printf("%d, ", intervalBuffer[i][j]);
         }
+        puts();
     }
 
 
