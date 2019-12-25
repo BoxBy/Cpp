@@ -6,8 +6,11 @@
 *.sln
 *.db
 *.VC.db
+*.exe
+*.ilk
+*.pdb
 
 .vs/
 .vscode/
-/Debug/
+**/Debug/
 Debug/
