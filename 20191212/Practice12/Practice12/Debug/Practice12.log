@@ -1,7 +1,0 @@
-﻿  Practice12.cpp
-c:\users\user\onedrive - konkuk.ac.kr\workspace\visual studio\20191212\practice12\practice12\practice12.cpp(43): error C2664: 'std::ostream &stepws2(std::ostream &)': 인수 1을(를) 'const char [2]'에서 'std::ostream &'(으)로 변환할 수 없습니다.
-c:\users\user\onedrive - konkuk.ac.kr\workspace\visual studio\20191212\practice12\practice12\practice12.cpp(44): error C2664: 'std::ostream &stepws2(std::ostream &)': 인수 1을(를) 'const char [2]'에서 'std::ostream &'(으)로 변환할 수 없습니다.
-c:\users\user\onedrive - konkuk.ac.kr\workspace\visual studio\20191212\practice12\practice12\practice12.cpp(45): error C2664: 'std::ostream &stepws2(std::ostream &)': 인수 1을(를) 'const char [2]'에서 'std::ostream &'(으)로 변환할 수 없습니다.
-c:\users\user\onedrive - konkuk.ac.kr\workspace\visual studio\20191212\practice12\practice12\practice12.cpp(46): error C2664: 'std::ostream &stepws2(std::ostream &)': 인수 1을(를) 'const char [1]'에서 'std::ostream &'(으)로 변환할 수 없습니다.
-c:\users\user\onedrive - konkuk.ac.kr\workspace\visual studio\20191212\practice12\practice12\practice12.cpp(47): error C2664: 'std::ostream &stepws2(std::ostream &)': 인수 1을(를) 'const char [2]'에서 'std::ostream &'(으)로 변환할 수 없습니다.
-c:\users\user\onedrive - konkuk.ac.kr\workspace\visual studio\20191212\practice12\practice12\practice12.cpp(48): error C2664: 'std::ostream &stepws2(std::ostream &)': 인수 1을(를) 'const char [2]'에서 'std::ostream &'(으)로 변환할 수 없습니다.
