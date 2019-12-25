@@ -1,0 +1,13 @@
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.vs
+*.zip
+*.sln
+*.db
+*.VC.db
+
+.vs/
+.vscode/
+/Debug/
+Debug/
