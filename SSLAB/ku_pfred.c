@@ -61,6 +61,7 @@ int main(int argc, char* argv[3]){
         if(forkNum == i){
             mq_send(mfd, intervalBuffer, count, forkNum);    //messagequeue로 보낸다
         }
+
         if(forkNum == 0){
             waitpid(pid[i], NULL, 0);
             mq_receive(mfd, buffer, countTemp, NULL);   //forkNum이 0인 부모 프로세스에 값을 모아준다
@@ -69,6 +70,7 @@ int main(int argc, char* argv[3]){
                 count[i] += countTemp;
             }
         }
+
     }
 
     for(int i = 4; i > 0; i++) // 프로세스 종료
@@ -76,11 +78,11 @@ int main(int argc, char* argv[3]){
             exit(0);
     
     for(int i = 0; i < interval; i++)
-        qsort(intervalBuffer[i], count[i], sizeof(int), compare); // 정렬
+        qsort(intervalBuffer[i], count[i], sizeof(int), compare); // sorting
 
     countTemp = 0;
 
-    for(int i = 0; i < interval; i++){ // 출력
+    for(int i = 0; i < interval; i++){ // print
         printf("%d ~ %d = ", countTemp, countTemp + (int)(BUFFER_SIZE / interval));
         for(int j = 0; j < count[i]; j++){
             printf("%d, ", intervalBuffer[i][j]);
