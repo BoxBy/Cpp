@@ -87,7 +87,7 @@ int main(int argc, char* argv[3]){
         for(int j = 0; j < count[i]; j++){
             printf("%d, ", intervalBuffer[i][j]);
         }
-        puts();
+        puts("");
     }
 
 

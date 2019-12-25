@@ -52,39 +52,39 @@ int main(int argc, char* argv[3]){
     for(int i = 0; i < BUFFER_SIZE; i++)
         fscanf(file, "%d", &buffer[i]);
 
-    file.close();
+    close(file);
 
-    struct t_data data;
-    data.threadsNum = atoi(argv[0]);
-    data.interval = atoi(argv[1]);
-    data.end = BUFFER_SIZE;
+    struct t_data *data;
+    data->threadsNum = atoi(argv[0]);
+    data->interval = atoi(argv[1]);
+    data->end = BUFFER_SIZE;
 
     pthread_mutex_t_init(&mutex, NULL); // create mutex
 
-    pthread_t thread_id[data.threadsNum];
+    pthread_t thread_id[data->threadsNum];
 
-    for(int i = 0; i < data.threadsNum; i++){
-        data.start = i;
+    for(int i = 0; i < data->threadsNum; i++){
+        data->start = i;
         pthread_mutex_lock(&mutex);
         pthread_create(&thread_id[i], NULL, thread_distribute, data); // create thread
     }   
 
-    for(int i = 0; i < data.threadsNum; i++)
-        pthread_mutex_join(&thread_id[i], (void*) status) // thread join
+    for(int i = 0; i < data->threadsNum; i++)
+        pthread_mutex_join(&thread_id[i], NULL); // thread join(return null)
 
-    for(int i = 0; i < data.interval; i++) // sorting
+    for(int i = 0; i < data->interval; i++) // sorting
         qsort(intervalBuffer[i], count[i], sizeof(int), compare);
     
     pthread_mutex_destroy(&mutex); //destroy mutex
 
-    data.start = 0;
+    data->start = 0;
 
-    for(int i = 0; i < data.interval; i++){ // print
-        printf("%d ~ %d = ",data.start, data.start + (int)(BUFFER_SIZE / data.interval));
+    for(int i = 0; i < data->interval; i++){ // print
+        printf("%d ~ %d = ",data->start, data->start + (int)(BUFFER_SIZE / data->interval));
         for(int j = 0; j < count[i]; j++){
             printf("%d, ", intervalBuffer[i][j]);
         }
-        puts();
+        puts("");
     }
 
     return 0;
