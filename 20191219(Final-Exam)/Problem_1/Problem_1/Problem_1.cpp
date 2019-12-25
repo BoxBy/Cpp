@@ -5,96 +5,110 @@
 
 using namespace std;
 
-ostream& ptab(string hdr_str[], int* val_array[], int row1, int col1, int row2, int col2) {
-	cout << setw(35) << setfill("-") << endl;
+#define TAB 1
+#define RAVE 2
+#define CAVE 3
 
-	for (int i = col1; i <= col2; i++)
-		cout << setw(6) << right << hdr_str[i];
-
-	cout << endl << setw(35) << setfill("=") << endl;
-
-	for (int i = row1; i <= row2; i++) {
-		for (int j = col1; j <= col2; j++)
-			cout << setw(6) << right << val_array[i][j];
-		cout << endl;
-	}
-
-	cout << setw(35) << setfill("-") << endl;
-
-	return;
-}
-
-
-class ptab {
+class myManip {
 private:
-	string hdr_str[6];
+	string* hdr_str;
 	int val_array[10][6];
-	int row1, row2, col1, col2;
+	int row1, row2, col1, col2, selector;
 public:
-	ptab(string hdr_str[], int* val_array[], int row1, int col1, int row2, int col2) {
-		for (int j = 0; j < 10; j++) {
-			for (int i = 0; i < 6; i++) {
-				this->hdr_str[i] = hdr_str[i];
-				this->val_array[j][i] = val_array[j][i];
+	myManip(string* hdr_str, int* val_array[], int row1, int col1, int row2, int col2, int selector) : hdr_str(hdr_str), row1(row1), col1(col1), row2(row2), col2(col2), selector(selector) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 10; j++) {
+				myManip::val_array[j][i] = val_array[j][i];
 			}
 		}
-		this->col1 = col1, this->col2 = col2, this->row1 = row1, this->row2 = row2;
+
 	}
 
-	ostream& operator<<(ostream& os, string hdr_str[], int* val_array[], int row1, int col1, int row2, int col2);
+	friend ostream& operator<<(ostream& os, myManip);
 
 };
 
-ostream& ptab::operator<<(ostream& os, string hdr_str[], int* val_array[], int row1, int col1, int row2, int col2){
+ostream& operator<<(ostream& os, myManip source) {
+	if (source.selector == TAB) {
+		os << setw(36) << setfill('-') << '-' << endl;
 
-	return os << endl;
+		for (int i = source.col1; i <= source.col2; i++)
+			os << setfill(' ') << setw(6) << right << source.hdr_str[i];
+
+		os << endl << setw(36) << setfill('=') << '=' << endl;
+
+		for (int i = source.row1; i <= source.row2; i++) {
+			for (int j = source.col1; j <= source.col2; j++)
+				os << setfill(' ') << setw(6) << right << source.val_array[i][j];
+			os << endl;
+		}
+
+		os << setw(36) << setfill('-') << '-';
+	}
+	else if (source.selector == RAVE) {
+		os << setw(60) << setfill('-') << '-' << endl;
+
+		for (int i = source.row1; i <= source.row2; i++)
+			os << setfill(' ') << setw(6) << right << source.hdr_str[i];
+
+		os << endl << setw(60) << setfill('=') << '=' << endl;
+
+		int temp;
+
+		for (int i = source.row1; i <= source.row2; i++) {
+			temp = 0;
+			for (int j = source.col1; j <= source.col2; j++)
+				temp += source.val_array[i][j];
+			temp /= (source.col2 + 1);
+			os << setfill(' ') << setw(6) << right << temp;
+		}
+
+		os << endl << setw(60) << setfill('-') << '-';
+
+	}
+	else if (source.selector == CAVE) {
+		os << setw(30) << setfill('-') << '-' << endl;
+
+		for (int i = source.col1-1; i < source.col2; i++)
+			os << setfill(' ') << setw(6) << right << source.hdr_str[i];
+
+		os << endl << setw(30) << setfill('=') << '=' << endl;
+
+		int temp;
+		for (int i = source.col1; i <= source.col2; i++) {
+			temp = 0;
+			for (int j = source.row1; j <= source.row2; j++)
+				temp += source.val_array[j][i];
+			temp /= (source.row2 + 1);
+			os << setfill(' ') << setw(6) << right << temp;
+		}
+
+		os << endl << setw(30) << setfill('-') << '-' << endl;
+
+	}
+
+	return os << setfill(' ') << endl;
 }
 
-ostream& prave(string hdr_str[], int* val_array[], int row1, int col1, int row2, int col2) {
-	cout << setw(60) << setfill("-") << endl;
 
-	for (int i = row1; i <= row2; i++)
-		cout << setw(6) << right << hdr_str[i];
-
-	cout << endl << setw(60) << setfill("=") << endl;
-
-	int temp;
-	for (int i = row1; i <= row2; i++) {
-		temp = 0;
-		for (int j = col1; j <= col2; j++)
-			temp += val_array[i][j];
-		temp /= (col2 + 1);
-		cout << setw(6) << right << temp;
-	}
-	cout << endl << setw(60) << setfill("-") << endl;
-
-	return;
+myManip ptab(std::string* hdr_str, int** val_array, int row1, int col1, int row2, int col2) {
+	return myManip(hdr_str, val_array, row1, col1, row2, col2, TAB);
 }
 
-ostream& pcave(string hdr_str[], int* val_array[], int row1, int col1, int row2, int col2) {
-	cout << setw(30) << setfill("-") << endl;
+myManip prave(std::string* hdr_str, int** val_array, int row1, int col1, int row2, int col2) {
+	return myManip(hdr_str, val_array, row1, col1, row2, col2, RAVE);
+}
 
-	for (int i = row1; i <= row2; i++)
-		cout << setw(6) << right << hdr_str[i];
-
-	cout << endl << setw(30) << setfill("=") << endl;
-
-	int temp;
-	for (int i = col1; i <= col1; i++) {
-		temp = 0;
-		for (int j = row1; j <= row2; j++)
-			temp += val_array[j][i];
-		temp /= (row2 + 1);
-		cout << setw(6) << right << temp;
-	}
-	cout << endl << setw(30) << setfill("-") << endl;
-
-	return;
+myManip pcave(std::string* hdr_str, int** val_array, int row1, int col1, int row2, int col2) {
+	return myManip(hdr_str, val_array, row1, col1, row2, col2, CAVE);
 }
 
 int main() {
 	string hdr1[6];
-	int val[10][6];
+	int** val;
+	val = new int* [10];
+	for (int i = 0; i < 10; i++)
+		val[i] = new int[6];
 
 	string hdr2[10] = { "no 1", "no 2", "no 3", "no 4", "no 5", "no 6", "no 7", "no 8", "no 9", "no 10" };
 	string hdr3[5] = { "math", "eng", "phy", "chem", "hist" };
